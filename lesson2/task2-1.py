@@ -4,6 +4,5 @@ n = int(input("Input number of elements to sum up: "))
 progression_first = 1
 progression_second = -0.5
 q = progression_second / progression_first
-last = progression_first * (q ** (n - 1))
 result = (progression_first * (q ** n - 1)) / (q - 1)
 print(f"Sum is {result}")
