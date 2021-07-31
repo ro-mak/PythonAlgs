@@ -21,8 +21,6 @@ for i in range(max_number_length - len(numbers[1]), max_number_length):
 hex_sum = deque()
 dec_1 = 0
 dec_2 = 0
-print(number1)
-print(number2)
 for i in range(max_number_length-1, -1, -1):
     power_1 = (16 ** (max_number_length - 1 - i))
     converted_1 = hex_numbers_reversed[number1[i]]
@@ -30,10 +28,6 @@ for i in range(max_number_length-1, -1, -1):
     converted_2 = hex_numbers_reversed[number2[i]]
     dec_1 += converted_1 * power_1
     dec_2 += converted_2 * power_2
-    print(converted_1)
-    print(converted_2)
-    print(dec_1)
-    print(dec_2)
 dec_sum = dec_1 + dec_2
 print(f"Decimal sum= {dec_sum}")
 r = dec_sum
