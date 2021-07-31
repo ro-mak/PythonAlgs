@@ -18,7 +18,6 @@ for i in range(max_number_length - len(numbers[0]), max_number_length):
     number1[i] = numbers[0][i - max_number_length + len(numbers[0])]
 for i in range(max_number_length - len(numbers[1]), max_number_length):
     number2[i] = numbers[1][i - max_number_length + len(numbers[1])]
-hex_sum = deque()
 dec_1 = 0
 dec_2 = 0
 for i in range(max_number_length - 1, -1, -1):
@@ -29,10 +28,17 @@ for i in range(max_number_length - 1, -1, -1):
     dec_1 += converted_1 * power_1
     dec_2 += converted_2 * power_2
 dec_sum = dec_1 + dec_2
+dec_mult = dec_1 * dec_2
 print(f"Decimal sum = {dec_sum}")
 r = dec_sum
-
+r1 = dec_mult
+hex_sum = deque()
+hex_mult = deque()
 while r > 0:
     hex_sum.appendleft(hex_numbers[r % 16])
     r //= 16
+while r1 > 0:
+    hex_mult.appendleft(hex_numbers[r1 % 16])
+    r1 //= 16
 print(f"Hex sum = {hex_sum}")
+print(f"Hex mult = {hex_mult}")
