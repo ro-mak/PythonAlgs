@@ -1,4 +1,5 @@
 from collections import OrderedDict
+from collections import deque
 
 hex_numbers = OrderedDict(
     {0: "0", 1: "1", 2: "2", 3: "3", 4: "4", 5: "5", 6: "6", 7: "7", 8: "8", 9: "9", 10: "A", 11: "B", 12: "C", 13: "D",
@@ -17,7 +18,7 @@ for i in range(max_number_length - len(numbers[0]), max_number_length):
     number1[i] = numbers[0][i - max_number_length + len(numbers[0])]
 for i in range(max_number_length - len(numbers[1]), max_number_length):
     number2[i] = numbers[1][i - max_number_length + len(numbers[1])]
-hex_sum = 0
+hex_sum = deque()
 dec_1 = 0
 dec_2 = 0
 print(number1)
@@ -33,4 +34,11 @@ for i in range(max_number_length-1, -1, -1):
     print(converted_2)
     print(dec_1)
     print(dec_2)
-print(dec_1 + dec_2)
+dec_sum = dec_1 + dec_2
+print(f"Decimal sum= {dec_sum}")
+r = dec_sum
+
+while r > 0:
+    hex_sum.appendleft(hex_numbers[r % 16])
+    r //= 16
+print(hex_sum)
