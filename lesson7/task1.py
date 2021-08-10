@@ -9,26 +9,31 @@
 import random
 import sys
 
+
+def my_bubble_sort(array):
+    n = 1
+    count = 0
+    isSorted = False
+    while n < len(array):
+        if isSorted:
+            break
+        isSorted = True
+        for i in range(len(array) - n):
+            count += 1
+            #  print(f"n = {n} i = {i} first={array[i]} second={array[i+1]} {array}")
+            if array[i] > array[i + 1]:
+                array[i], array[i + 1] = array[i + 1], array[i]
+                isSorted = False
+
+        n += 1
+
+    print(array)
+    print(f"Elements: {size} Iter: {count} Memory: {sys.getsizeof(n) + sys.getsizeof(isSorted)}")
+
+
 array = [i for i in range(-100, 100)]
 size = len(array)
 random.shuffle(array)
 print(f"Init:{array}")
 
-n = 1
-count = 0
-isSorted = False
-while n < len(array):
-    if isSorted:
-        break
-    isSorted = True
-    for i in range(len(array) - n):
-        count += 1
-      #  print(f"n = {n} i = {i} first={array[i]} second={array[i+1]} {array}")
-        if array[i] > array[i + 1]:
-            array[i], array[i + 1] = array[i + 1], array[i]
-            isSorted = False
-
-    n += 1
-
-print(array)
-print(f"Elements: {size} Iter: {count} Memory: {sys.getsizeof(n) + sys.getsizeof(isSorted)}")
+my_bubble_sort(array)
