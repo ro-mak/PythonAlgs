@@ -23,6 +23,5 @@ for i in range(len(graph)):
         iter += 1
         if item1 == item2 and item1 == 1:
             handshakes += 1
-            graph[i][j] = 0
 print(f"Handshakes = {handshakes}")
 print(f"Iter = {iter}")
