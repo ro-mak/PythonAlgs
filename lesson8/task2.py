@@ -14,8 +14,6 @@ class Vertex:
         return f"{self.cost} {self.path}"
 
 
-n = int(input("Graph size: "))
-
 g = [[0, 0, 1, 1, 9, 0, 0, 0],
      [0, 0, 9, 4, 0, 0, 5, 0],
      [0, 9, 0, 0, 3, 0, 6, 0],
@@ -25,14 +23,11 @@ g = [[0, 0, 1, 1, 9, 0, 0, 0],
      [0, 0, 7, 0, 8, 1, 0, 0],
      [0, 0, 0, 0, 0, 1, 2, 0]]
 
-# for i in range(0, n):
-#     g.append([randint(0, n) for j in range(0, n)])
 for i in range(len(g)):
     print(g[i])
 
 
 def dijkstra(graph, start):
-    initial_start = start
     length = len(graph)
     is_visited = [False] * length
     cost = []
@@ -42,7 +37,6 @@ def dijkstra(graph, start):
 
     cost[start].cost = 0
     min_cost = 0
-    path = []
     while min_cost < float('inf'):
         is_visited[start] = True
         for i, vertex in enumerate(graph[start]):
@@ -61,6 +55,7 @@ def dijkstra(graph, start):
             cost[i].path.append(p)
             p = parent[p]
         cost[i].path.reverse()
+        cost[i].path.append(i)
     return cost
 
 
