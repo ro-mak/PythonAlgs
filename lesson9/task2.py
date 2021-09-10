@@ -19,18 +19,13 @@ class Node:
         self.right = right
 
     def __str__(self):
-        r = ""
-        left_desc = f"{self.left}"
-        right_desc = f"{self.right}"
-        data_desc = f"Node data = {self.data}"
-        left_len = int(len(left_desc) * 0.5)
-        right_len = int(len(right_desc) * 0.5)
-        data_len = int(len(data_desc) * 0.5)
-        r += f"{left_len * '_'}/ {data_desc} \\ {right_len * '_'}"
+        r = "\n"
+        r += f"Node {self.data}"
         r += "\n"
-        #    r += f"{left_len * '_'}/  {data_len * ' '}  \\ {right_len * '_'}"
+        r += f"Left {self.left}"
         r += "\n"
-        r += f"{left_desc} {data_len * ' '} {right_desc}"
+        r += f"Right {self.right}"
+        r += "\n"
         return r
 
     # defining comparators less_than and equals
@@ -63,6 +58,29 @@ def prepare_queue(frequency: dict):
     return haffman_queue
 
 
+def search(tree: Node, path, table):
+    print(f"Walk Left {tree.left} path {path} table {table}")
+    if tree.data[0] != '':
+        table[tree.data[0]] = path
+    if tree.left is not None:
+        search(tree.left, path + "0", table)
+    print(f"\nWalk Right {tree.right}")
+    if tree.right is not None:
+        search(tree.right, path + "1", table)
+    return table
+
+
+def create_table(haffman_queue: MyPriorityQueue):
+    item: Node = haffman_queue.get_nowait()[1]
+    binary_table = search(item, "", {})
+    print(binary_table)
+    return binary_table
+
+
+def string_to_bin(binary_table, s):
+    pass
+
+
 def haffman_encoding(s):
     frequency = get_frequency(s)
     haffman_queue = prepare_queue(frequency)
@@ -82,7 +100,8 @@ def haffman_encoding(s):
             if item1 is not None:
                 haffman_queue.put((item1[0], item1[1]))
             break
-    return haffman_queue
+    binary_table = create_table(haffman_queue)
+    return string_to_bin(binary_table, s)
 
 
 s = input("Input string: ")
