@@ -78,7 +78,11 @@ def create_table(haffman_queue: MyPriorityQueue):
 
 
 def string_to_bin(binary_table, s):
-    pass
+    r = ""
+    for i in s:
+        r += binary_table[i]
+        r += ' '
+    return r
 
 
 def haffman_encoding(s):
